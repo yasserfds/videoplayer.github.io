@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <title>Video Player</title>
+
+    <style>
+        body {
+            background-color: black;
+            height: 100vh; /* Full height of the viewport */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Quicksand', sans-serif; /* Use correct font-family name */
+            color: white; /* Set text color */
+        }
+
+        .container {
+            display: inline-block; /* Change to inline-block */
+            padding: 15px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            font-weight: 500;
+            margin: 0; /* Remove any default margin */
+        }
+
+        .video-container {
+            margin-top: 20px; /* Adjust margin as needed */
+            border-radius: 10px;
+            overflow: hidden; /* Ensure video does not overflow container */
+        }
+
+        .video-container iframe {
+            width: 100%; /* Make video fill its container */
+            height: 100%; /* Make video fill its container */
+            border: none; /* Remove border */
+            border-radius: 10px;
+        }
+
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .popup-content input[type="text"] {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .popup-content button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Welcome to Video Player</h2>
+        <div class="video-container">
+            <iframe id="videoFrame" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Popup for entering video URL -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <h2>Please enter the embedded video link:</h2>
+            <input type="text" id="videoLink" placeholder="Paste the embedded video link here">
+            <button onclick="updateVideo()">Enter</button>
+        </div>
+    </div>
+
+    <script>
+        function updateVideo() {
+            var videoLink = document.getElementById("videoLink").value;
+            var videoFrame = document.getElementById("videoFrame");
+            videoFrame.src = videoLink;
+            document.getElementById("popup").style.display = "none";
+        }
+
+        // Show the popup when the page loads
+        window.onload = function() {
+            document.getElementById("popup").style.display = "flex";
+        };
+    </script>
+</body>
+</html>
